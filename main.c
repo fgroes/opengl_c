@@ -37,11 +37,15 @@ void display()
 	gluLookAt(0, 0, 0, 0, 0, -100, 0, 1, 0);
 	glPushMatrix();
 	glTranslatef(0, 0, -3);
-	glColor3f(0, 0, 0);
 	glBegin(GL_TRIANGLES);
+		glColor3f(0, 0, 1);
 		glVertex3f(0, 0, 0);
 		glVertex3f(0, 1, 0);
 		glVertex3f(1, 0.5, 0);
+		glColor3f(1, 0.5, 0);
+		glVertex3f(-2, -2, -5);
+		glVertex3f(2, -2, -5);
+		glVertex3f(0, 2, -5);
 	glEnd();
 	glPopMatrix();
 	glutSwapBuffers();
