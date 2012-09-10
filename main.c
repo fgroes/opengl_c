@@ -7,6 +7,8 @@
 GLfloat position[3] = {0, 0, 0};
 GLfloat speed = 0.1;
 bool keyStates[256];
+static GLfloat vertices[] = {0, 0, -3, 0, 1, -3, 1, 0.5, -3, -2, -2, -8, 2, -2, -8, 0, 2, -8};
+static GLubyte indices[] = {0, 1, 2, 3, 4, 5};
 
 
 void init()
@@ -20,7 +22,7 @@ void init()
 	//glEnable(GL_LIGHTING);
 	//glEnable(GL_LIGHT0);
 	//glLight(GL_LIGHT0, GL_POSITION, light_position);
-	//glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY);
 	//glEnableClientState(GL_NORMAL_ARRAY);
 	printf("done\n");
 }
@@ -49,16 +51,9 @@ void display()
 	gluLookAt(0, 0, 0, 0, 0, -100, 0, 1, 0);
 	glPushMatrix();
 	glTranslatev(position);
-	glBegin(GL_TRIANGLES);
-		glColor3f(0, 0, 1);
-		glVertex3f(0, 0, -3);
-		glVertex3f(0, 1, -3);
-		glVertex3f(1, 0.5, -3);
-		glColor3f(1, 0.5, 0);
-		glVertex3f(-2, -2, -8);
-		glVertex3f(2, -2, -8);
-		glVertex3f(0, 2, -8);
-	glEnd();
+	glColor3f(1, 0.5, 0);
+	glVertexPointer(3, GL_FLOAT, 0, vertices);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, indices);
 	glPopMatrix();
 	glutSwapBuffers();
 }	
