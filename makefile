@@ -1,9 +1,17 @@
 CFLAGS = -lGL -lGLU -lglut
-main: main.o llist.o
-	gcc -o main main.o llist.o $(CFLAGS)
+MAIN = main.o graphics.o keyboard.o llist.o 
+
+main: $(MAIN)
+	gcc -o main $(MAIN) $(CFLAGS)
 
 main.o: main.c
 	gcc -c main.c
+
+graphics.o: graphics.c graphics.h
+	gcc -c graphics.c
+
+keyboard.o: keyboard.c keyboard.h
+	gcc -c keyboard.c
 
 llist.o: llist.c llist.h
 	gcc -c llist.c
