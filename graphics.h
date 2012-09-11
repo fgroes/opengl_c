@@ -4,9 +4,9 @@
 
 void init();
 
-void reshape(int width, int height);
+void reshape(int, int);
 
-void glTranslatev(GLfloat *v);
+void glTranslatev(GLfloat *);
 
 
 #endif

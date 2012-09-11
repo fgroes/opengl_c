@@ -34,25 +34,31 @@ void testlist()
 		int a; 
 		float b;
 	};
-	struct test r, s, t;
-	r.a = 7;
-	r.b = 7.781;
-	llist_add_element(&l, &r);
-	s.a = 12;
-	s.b = 0.341;
-	llist_add_element(&l, &s);
-	t.a = 8;
-	t.b = 25.8;
-	llist_add_element(&l, &t);
+	struct test *r, *s, *t;
+	r = malloc(sizeof(struct test));
+	s = malloc(sizeof(struct test));
+	t = malloc(sizeof(struct test));
+	r->a = 7;
+	r->b = 7.781;
+	llist_add_element(&l, r);
+	s->a = 12;
+	s->b = 0.341;
+	llist_add_element(&l, s);
+	t->a = 8;
+	t->b = 25.8;
+	llist_add_element(&l, t);
 	printf("%d\n", l.len);
 	struct test *x;
 	void *i;
-	for (i = llist_start(&l); llist_end(&l); i = llist_get_next(&l))
+	for (i = llist_start(&l); llist_end(&l); i = llist_next(&l))
 	{
  		x = (struct test *)i;
 		printf("%d\n", x->a);
 		printf("%f\n", x->b);
 	}
+	x = (struct test *)llist_get_element(&l, 0);
+	printf("%d\n", x->a);
+	printf("%f\n", x->b);
 	llist_delete(&l);
 }
 

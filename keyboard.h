@@ -8,11 +8,11 @@ extern GLfloat speed;
 extern bool keyStates[];
 
 
-void keyPressed(unsigned char key, int x, int y);
+void keyPressed(unsigned char, int, int);
 
-void keyReleased(unsigned char key, int x, int y);
+void keyReleased(unsigned char, int, int);
 
-void timer(int n);
+void timer(int);
 
 
 #endif

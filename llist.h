@@ -5,7 +5,7 @@
 
 struct llist_element
 {
-	//int index;
+	int index;
 	struct llist_element *next;
 	void *element;
 };
@@ -22,17 +22,19 @@ struct llist
 typedef	struct llist LLIST; 
 
 
-void llist_init(LLIST *self);
+void llist_init(LLIST *);
 
-void llist_add_element(LLIST *self, void *element);
+void *llist_get_element(LLIST *, int);
 
-void *llist_start(LLIST *self);
+void llist_add_element(LLIST *, void *);
 
-void *llist_get_next(LLIST *self);
+void *llist_start(LLIST *);
 
-bool llist_end(LLIST *self);
+void *llist_next(LLIST *);
 
-void llist_delete(LLIST *self);
+bool llist_end(LLIST *);
+
+void llist_delete(LLIST *);
 
 
 #endif
