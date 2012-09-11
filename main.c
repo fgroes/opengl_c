@@ -2,6 +2,7 @@
 #include <stdbool.h>
 //#include <stdlib.h>
 #include <GL/glut.h>
+#include "llist.h"
 
 
 GLfloat position[3] = {0, 0, 0};
@@ -85,9 +86,42 @@ void timer(int n)
 	glutTimerFunc(20, timer, 0);
 }	
 
+void testlist()
+{
+	LLIST l;
+	llist_init(&l);
+	struct test 
+	{
+		int a; 
+		float b;
+	};
+	struct test r, s, t;
+	r.a = 7;
+	r.b = 7.781;
+	llist_add_element(&l, &r);
+	s.a = 12;
+	s.b = 0.341;
+	llist_add_element(&l, &s);
+	t.a = 8;
+	t.b = 25.8;
+	llist_add_element(&l, &t);
+	printf("%d\n", l.len);
+	struct test *x;
+	void *i;
+	for (i = llist_start(&l); llist_end(&l); i = llist_get_next(&l))
+	{
+ 		x = (struct test *)i;
+		printf("%d\n", x->a);
+		printf("%f\n", x->b);
+	}
+	llist_delete(&l);
+}
+
 
 int main(int argc, char **argv)
 {
+	testlist();
+	/*
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800, 600);
@@ -100,5 +134,6 @@ int main(int argc, char **argv)
 	glutKeyboardUpFunc(keyReleased);
 	glutTimerFunc(20, timer, 0);
 	glutMainLoop();
+	*/
 	return 0;
 }
