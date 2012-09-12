@@ -1,14 +1,17 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 //#include <stdlib.h>
 #include <GL/glut.h>
 #include "graphics.h"
 #include "keyboard.h"
 #include "llist.h"
+#include "load_geo_obj.h"
 
 
-static GLfloat vertices[] = {0, 0, -3, 0, 1, -3, 1, 0.5, -3, -2, -2, -8, 2, -2, -8, 0, 2, -8};
-static GLubyte indices[] = {0, 1, 2, 3, 4, 5};
+int N;
+GLfloat *vertices;
+GLuint *indices;
 
 
 void display()
@@ -19,7 +22,7 @@ void display()
 	glTranslatev(position);
 	glColor3f(1, 0.5, 0);
 	glVertexPointer(3, GL_FLOAT, 0, vertices);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, indices);
+	glDrawElements(GL_TRIANGLES, N, GL_UNSIGNED_INT, indices);
 	glPopMatrix();
 	glutSwapBuffers();
 }	
@@ -63,9 +66,8 @@ void testlist()
 }
 
 
-int main(int argc, char **argv)
+void draw(int argc, char **argv)
 {
-	testlist();
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800, 600);
@@ -78,5 +80,13 @@ int main(int argc, char **argv)
 	glutKeyboardUpFunc(keyReleased);
 	glutTimerFunc(20, timer, 0);
 	glutMainLoop();
+}
+
+
+int main(int argc, char **argv)
+{
+	load_geo_obj("/home/fritz/Downloads/Models/X29.obj");
+	//testlist();
+	draw(argc, argv);
 	return 0;
 }
