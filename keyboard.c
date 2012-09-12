@@ -4,7 +4,7 @@
 
 
 GLfloat position[3] = {0, 0, 0};
-GLfloat speed = 0.1;
+GLfloat speed = 2.0;
 bool keyStates[256];
 
 

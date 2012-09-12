@@ -85,7 +85,7 @@ void draw(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	load_geo_obj("/home/fritz/Downloads/Models/X29.obj");
+	load_geo_obj("/home/fritz/Downloads/Models/eiffel.obj");
 	//testlist();
 	draw(argc, argv);
 	return 0;
