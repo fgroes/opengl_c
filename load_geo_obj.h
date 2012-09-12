@@ -8,7 +8,7 @@ extern GLfloat *vertices;
 extern GLuint *indices;
 
 
-void load_geo_obj(char *filename);
+void load_geo_obj(char *);
 
 
 #endif

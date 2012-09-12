@@ -3,6 +3,7 @@
 #include <string.h>
 #include <GL/glut.h>
 #include "load_geo_obj.h"
+#include "math_adv.h"
 
 
 void load_test()
@@ -24,6 +25,7 @@ void load_geo_obj(char *filename)
 {
 	//load_test();
 	GLuint idx[3];
+	GLfloat *vtx;
 	char line_buffer[BUFSIZ];
 	char type;
 	FILE *file;
@@ -58,10 +60,11 @@ void load_geo_obj(char *filename)
 			sscanf(line_buffer, "%c", &type);
 			if (type == 'v')
 			{
-				sscanf(line_buffer, "%c %f %f %f", &type, vertices + 3 * v, vertices + 3 * v + 1, vertices + 3 * v + 2);
+				vtx = vertices + 3 * v;
+				sscanf(line_buffer, "%c %f %f %f", &type, vtx, vtx + 1, vtx + 2);
 				v++;
 			}
-			if (type == 'f')
+			else if (type == 'f')
 			{
 				sscanf(line_buffer, "%c %d %d %d", &type, &idx[0], &idx[1], &idx[2]);
 				int i;
@@ -74,4 +77,12 @@ void load_geo_obj(char *filename)
 	}
 	else
 		perror("file could not be opened\n");
+	GLfloat a[] = {0, 1, 0, 0, 0, 0};
+	GLfloat b[] = {0, 0, 0, 1, 0, 0};
+	GLfloat c[] = {0, 0, 0, 0, 0, 0};
+	cross(a + 1, b + 2, c + 3);
+	int i;
+	for (i = 0; i < 6; i++)
+		printf(" %f", c[i]);
+	printf("\n");
 }
