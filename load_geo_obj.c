@@ -24,6 +24,7 @@ void load_test()
 void load_geo_obj(char *filename)
 {
 	//load_test();
+	int face_num = 0, vertex_num = 0;
 	GLuint idx[3];
 	GLfloat *vtx;
 	char line_buffer[BUFSIZ];
@@ -33,7 +34,6 @@ void load_geo_obj(char *filename)
 	if (file != NULL)
 	{
 		printf("loading file: %s\n", filename);
-		int face_num = 0, vertex_num = 0;
 		while (fgets(line_buffer, sizeof(line_buffer), file))
 		{
 			sscanf(line_buffer, "%c", &type);
@@ -77,12 +77,25 @@ void load_geo_obj(char *filename)
 	}
 	else
 		perror("file could not be opened\n");
-	GLfloat a[] = {0, 1, 0, 0, 0, 0};
-	GLfloat b[] = {0, 0, 0, 1, 0, 0};
-	GLfloat c[] = {0, 0, 0, 0, 0, 0};
-	cross(a + 1, b + 2, c + 3);
-	int i;
-	for (i = 0; i < 6; i++)
-		printf(" %f", c[i]);
-	printf("\n");
+	normals = malloc(3 * vertex_num * sizeof(GLfloat));
+	GLfloat *nml;
+	GLuint *fc;
+	GLfloat a[3], b[3];
+	int n, m;
+	for (n = 0; n < vertex_num; n++)
+	{
+		nml = normals + 3 * n;
+		for (m = 0; m < face_num; m++)
+		{
+			fc = indices + 3 * m;
+			if (fc[0] == n || fc[1] == n || fc[2] == n)
+			{
+				sub(vertices + fc[0], vertices + fc[1], a);
+				sub(vertices + fc[2], vertices + fc[1], b);
+				normalize(a);
+				normalize(b);
+				cross(a, b, nml);
+			}
+		}
+	}
 }

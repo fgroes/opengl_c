@@ -1,4 +1,4 @@
-CFLAGS = -lGL -lGLU -lglut
+CFLAGS = -lGL -lGLU -lglut -lm
 MAIN = main.o graphics.o keyboard.o llist.o load_geo_obj.o math_adv.o
 
 main: $(MAIN)

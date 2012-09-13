@@ -5,6 +5,7 @@
 
 extern int N;
 extern GLfloat *vertices;
+extern GLfloat *normals;
 extern GLuint *indices;
 
 

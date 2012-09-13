@@ -7,15 +7,17 @@ void init()
 {
 	printf("initialising opengl ... ");
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_NORMALIZE);
+	glEnable(GL_NORMALIZE);
 	glShadeModel(GL_SMOOTH);
 	glClearColor(1, 1, 1, 1);
-	//glEnable(GL_COLOR_MATERIAL);
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
-	//glLight(GL_LIGHT0, GL_POSITION, light_position);
+	glEnable(GL_COLOR_MATERIAL);
+	//glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	GLfloat light_position[] = {0, 100, 100};	
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	//glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
 	printf("done\n");
 }
 

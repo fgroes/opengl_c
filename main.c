@@ -11,6 +11,7 @@
 
 int N;
 GLfloat *vertices;
+GLfloat *normals;
 GLuint *indices;
 
 
@@ -20,8 +21,11 @@ void display()
 	gluLookAt(0, 0, 0, 0, 0, -100, 0, 1, 0);
 	glPushMatrix();
 	glTranslatev(position);
+	glTranslatef(0, -100, 0);
+	glRotatef(270, 1, 0, 0);
 	glColor3f(1, 0.5, 0);
 	glVertexPointer(3, GL_FLOAT, 0, vertices);
+	glNormalPointer(GL_FLOAT, 0, normals);
 	glDrawElements(GL_TRIANGLES, N, GL_UNSIGNED_INT, indices);
 	glPopMatrix();
 	glutSwapBuffers();
