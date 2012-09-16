@@ -1,2 +1,4 @@
 main
 *.o
+Models/*.off
+Models/*.obj

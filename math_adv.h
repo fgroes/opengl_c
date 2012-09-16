@@ -7,6 +7,8 @@ void add(float *, float *, float *);
 
 void sub(float *, float *, float *);
 
+void normalize(float *);
+
 void cross(float *, float *, float *);
 
 
