@@ -10,17 +10,18 @@
 #include "init_geo.h"
 
 
-GEOMETRY g;
-
-
 void display()
 {
+	GEOMETRY *g;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	gluLookAt(0, 0, 0, 0, 0, -100, 0, 1, 0);
-	glPushMatrix();
-	glTranslatev(position);
-	geometry_draw(&g);
-	glPopMatrix();
+	for (g = llist_start(&list_geos); llist_end(&list_geos); g = llist_next(&list_geos))
+	{
+		glPushMatrix();
+		glTranslatev(position);
+		geometry_draw((GEOMETRY *)g);
+		glPopMatrix();
+	}
 	glutSwapBuffers();
 }	
 
@@ -46,5 +47,6 @@ int main(int argc, char **argv)
 {
 	init_geo();
 	draw(argc, argv);
+	llist_delete(&list_geos);
 	return 0;
 }
