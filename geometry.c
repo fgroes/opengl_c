@@ -1,9 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <GL/glut.h>
-#include "math_adv.h"
-#include "graphics.h"
 #include "geometry.h"
 
 

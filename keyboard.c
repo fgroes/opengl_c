@@ -1,5 +1,3 @@
-#include <GL/glut.h>
-#include <stdbool.h>
 #include "keyboard.h"
 
 

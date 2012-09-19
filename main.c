@@ -7,6 +7,7 @@
 #include "keyboard.h"
 #include "llist.h"
 #include "geometry.h"
+#include "init_geo.h"
 
 
 GEOMETRY g;
@@ -43,10 +44,7 @@ void draw(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	geometry_load_geo_obj(&g, "./Models/eiffel.obj");
-	geometry_translate(&g, 0, -100, 0);
-	geometry_rotate(&g, 270, 1, 0, 0);
-	geometry_set_color(&g, 1, 0.5, 0);
+	init_geo();
 	draw(argc, argv);
 	return 0;
 }

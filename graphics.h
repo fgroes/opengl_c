@@ -1,5 +1,7 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
+#include <stdio.h>
+#include <GL/glut.h>
 
 
 void init();
