@@ -1,5 +1,5 @@
 CFLAGS = -lGL -lGLU -lglut -lm
-MAIN = main.o graphics.o keyboard.o llist.o load_geo_obj.o math_adv.o
+MAIN = main.o graphics.o keyboard.o llist.o geometry.o math_adv.o
 
 main: $(MAIN)
 	gcc -o main $(MAIN) $(CFLAGS)
@@ -16,8 +16,8 @@ keyboard.o: keyboard.c keyboard.h
 llist.o: llist.c llist.h
 	gcc -c llist.c
 
-load_geo_obj.o: load_geo_obj.c load_geo_obj.h
-	gcc -c load_geo_obj.c
+geometry.o: geometry.c geometry.h
+	gcc -c geometry.c
 
 math_adv.o: math_adv.c math_adv.h
 	gcc -c math_adv.c
