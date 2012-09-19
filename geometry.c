@@ -3,10 +3,11 @@
 #include <string.h>
 #include <GL/glut.h>
 #include "math_adv.h"
+#include "graphics.h"
 #include "geometry.h"
 
 
-void load_geo_obj(GEOMETRY *self, char *filename)
+void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 {
 	GLuint idx[3];
 	GLfloat *vtx;
@@ -83,37 +84,75 @@ void load_geo_obj(GEOMETRY *self, char *filename)
 }
 
 
-int get_num_face_coords(GEOMETRY *self)
+int geometry_get_num_face_coords(GEOMETRY *self)
 {
 	return 3 * self->face_num;	
 }
 
 
-int get_num_vertices(GEOMETRY *self)
+int geometry_get_num_vertices(GEOMETRY *self)
 {
 	return self->vertex_num;	
 }
 
 
-int get_num_faces(GEOMETRY *self)
+int geometry_get_num_faces(GEOMETRY *self)
 {
 	return self->face_num;	
 }
 
 
-GLfloat *get_vertex_array(GEOMETRY *self)
+GLfloat *geometry_get_vertex_array(GEOMETRY *self)
 {
 	return self->vertices;
 }
 
 
-GLfloat *get_normal_array(GEOMETRY *self)
+GLfloat *geometry_get_normal_array(GEOMETRY *self)
 {
 	return self->normals;
 }
 
 
-GLuint *get_index_array(GEOMETRY *self)
+GLuint *geometry_get_index_array(GEOMETRY *self)
 {
 	return self->indices;
+}
+
+
+void geometry_set_color(GEOMETRY *self, float r, float g, float b)
+{
+	self->color[0] = r;
+	self->color[1] = g;
+	self->color[2] = b;
+}
+
+
+void geometry_translate(GEOMETRY *self, float x, float y, float z)
+{
+	self->translation[0] = x;
+	self->translation[1] = y;
+	self->translation[2] = z;
+}
+
+
+void geometry_rotate(GEOMETRY *self, float angle, float x, float y, float z)
+{
+	self->rotation[0] = angle;
+	self->rotation[1] = x;
+	self->rotation[2] = y;
+	self->rotation[3] = z;
+}
+
+
+void geometry_draw(GEOMETRY *self)
+{
+	if (self->translation[0] != 0 || self->translation[1] != 0 || self->translation[2] != 0)
+		glTranslatev(self->translation);
+	if (self->rotation[0] != 0)
+		glRotatev(self->rotation);
+	glColorv(self->color);
+	glVertexPointer(3, GL_FLOAT, 0, self->vertices);
+	glNormalPointer(GL_FLOAT, 0, self->normals);
+	glDrawElements(GL_TRIANGLES, geometry_get_num_face_coords(self), GL_UNSIGNED_INT, self->indices);
 }

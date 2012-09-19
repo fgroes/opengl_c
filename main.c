@@ -18,12 +18,7 @@ void display()
 	gluLookAt(0, 0, 0, 0, 0, -100, 0, 1, 0);
 	glPushMatrix();
 	glTranslatev(position);
-	glTranslatef(0, -100, 0);
-	glRotatef(270, 1, 0, 0);
-	glColor3f(1, 0.5, 0);
-	glVertexPointer(3, GL_FLOAT, 0, get_vertex_array(&g));
-	glNormalPointer(GL_FLOAT, 0, get_normal_array(&g));
-	glDrawElements(GL_TRIANGLES, get_num_face_coords(&g), GL_UNSIGNED_INT, get_index_array(&g));
+	geometry_draw(&g);
 	glPopMatrix();
 	glutSwapBuffers();
 }	
@@ -48,7 +43,10 @@ void draw(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	load_geo_obj(&g, "./Models/eiffel.obj");
+	geometry_load_geo_obj(&g, "./Models/eiffel.obj");
+	geometry_translate(&g, 0, -100, 0);
+	geometry_rotate(&g, 270, 1, 0, 0);
+	geometry_set_color(&g, 1, 0.5, 0);
 	draw(argc, argv);
 	return 0;
 }

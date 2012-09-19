@@ -33,7 +33,19 @@ void reshape(int width, int height)
 }	
 
 
+void glColorv(GLfloat *c)
+{
+	glColor3f(c[0], c[1], c[2]);
+}
+
+
 void glTranslatev(GLfloat *v)
 {
 	glTranslatef(v[0], v[1], v[2]);
+}
+
+
+void glRotatev(GLfloat *v)
+{
+	glRotatef(v[0], v[1], v[2], v[3]);
 }
