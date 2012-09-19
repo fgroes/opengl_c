@@ -5,7 +5,7 @@
 struct geometry
 {
 	GLfloat *vertices, *normals;
-	GLuint *indices;
+	GLuint *faces;
 	int vertex_num, face_num;
 	float color[3], translation[3], rotation[4];
 };
@@ -25,7 +25,7 @@ GLfloat *geometry_get_vertex_array(GEOMETRY *);
 
 GLfloat *geometry_get_normal_array(GEOMETRY *);
 
-GLuint *geometry_get_index_array(GEOMETRY *);
+GLuint *geometry_get_face_array(GEOMETRY *);
 
 void geometry_set_color(GEOMETRY *, float, float, float);
 

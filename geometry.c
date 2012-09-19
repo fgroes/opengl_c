@@ -30,7 +30,7 @@ void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 		printf("vertices loaded: %d\n", self->vertex_num);
 		self->vertices = malloc(3 * self->vertex_num * sizeof(GLfloat));
 		printf("faces loaded: %d\n", self->face_num);
-		self->indices = malloc(3 * self->face_num * sizeof(GLuint));
+		self->faces = malloc(3 * self->face_num * sizeof(GLuint));
 	}
 	else
 		perror("file could not be opened\n");
@@ -52,7 +52,7 @@ void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 				sscanf(line_buffer, "%c %d %d %d", &type, &idx[0], &idx[1], &idx[2]);
 				int i;
 				for (i = 0; i < 3; i++) 
-					self->indices[3 * f + i] = idx[i] - 1;
+					self->faces[3 * f + i] = idx[i] - 1;
 				f++;
 			}
 		}
@@ -70,7 +70,7 @@ void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 		nml = self->normals + 3 * n;
 		for (m = 0; m < self->face_num; m++)
 		{
-			fc = self->indices + 3 * m;
+			fc = self->faces + 3 * m;
 			if (fc[0] == n || fc[1] == n || fc[2] == n)
 			{
 				sub(self->vertices + fc[0], self->vertices + fc[1], a);
@@ -114,9 +114,9 @@ GLfloat *geometry_get_normal_array(GEOMETRY *self)
 }
 
 
-GLuint *geometry_get_index_array(GEOMETRY *self)
+GLuint *geometry_get_face_array(GEOMETRY *self)
 {
-	return self->indices;
+	return self->faces;
 }
 
 
@@ -154,5 +154,5 @@ void geometry_draw(GEOMETRY *self)
 	glColorv(self->color);
 	glVertexPointer(3, GL_FLOAT, 0, self->vertices);
 	glNormalPointer(GL_FLOAT, 0, self->normals);
-	glDrawElements(GL_TRIANGLES, geometry_get_num_face_coords(self), GL_UNSIGNED_INT, self->indices);
+	glDrawElements(GL_TRIANGLES, geometry_get_num_face_coords(self), GL_UNSIGNED_INT, self->faces);
 }
