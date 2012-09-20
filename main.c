@@ -5,6 +5,7 @@
 #include <GL/glut.h>
 #include "graphics.h"
 #include "keyboard.h"
+#include "mouse.h"
 #include "llist.h"
 #include "geometry.h"
 #include "init_geo.h"
@@ -34,10 +35,12 @@ void draw(int argc, char **argv)
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("fps");
 	init();
+	//glutSetCursor(GLUT_CURSOR_NONE);
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyPressed);
 	glutKeyboardUpFunc(keyReleased);
+	glutPassiveMotionFunc(mouseMotion);
 	glutTimerFunc(20, timer, 0);
 	glutMainLoop();
 }
