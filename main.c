@@ -11,6 +11,9 @@
 #include "init_geo.h"
 
 
+int window_size_x = 800, window_size_y = 600;
+
+
 void display()
 {
 	GEOMETRY *g;
@@ -31,7 +34,7 @@ void draw(int argc, char **argv)
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(800, 600);
+	glutInitWindowSize(window_size_x, window_size_y);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("fps");
 	init();
