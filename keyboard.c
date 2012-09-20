@@ -4,6 +4,7 @@
 GLfloat position[3] = {0, 0, 0};
 GLfloat speed = 2.0;
 bool keyStates[256];
+float deg2rad = M_PI / 180.0;
 
 
 void keyPressed(unsigned char key, int x, int y)
@@ -20,14 +21,27 @@ void keyReleased(unsigned char key, int x, int y)
 
 void timer(int n)
 {
+	float angle = mouse_move[0] * mouse_speed * deg2rad;
 	if (keyStates['w'])
-		position[2] += speed;
+	{
+		position[0] -= speed * sin(angle);
+		position[2] += speed * cos(angle);
+	}
 	if (keyStates['s'])
-		position[2] -= speed;
+	{
+		position[0] += speed * sin(angle);
+		position[2] -= speed * cos(angle);
+	}
 	if (keyStates['d'])
-		position[0] -= speed;
+	{
+		position[0] -= speed * cos(angle);
+		position[2] -= speed * sin(angle);
+	}
 	if (keyStates['a'])
-		position[0] += speed;
+	{
+		position[0] += speed * cos(angle);
+		position[2] += speed * sin(angle);
+	}
 	glutPostRedisplay();
 	glutTimerFunc(20, timer, 0);
 }	

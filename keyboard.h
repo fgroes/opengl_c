@@ -1,7 +1,9 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 #include <stdbool.h>
+#include <math.h>
 #include <GL/glut.h>
+#include "mouse.h"
 
 
 extern GLfloat position[];

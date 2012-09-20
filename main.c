@@ -19,10 +19,12 @@ void display()
 	GEOMETRY *g;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	gluLookAt(0, 0, 0, 0, 0, -100, 0, 1, 0);
+	glLoadIdentity();
+	glRotatef(mouse_move[0] * mouse_speed, 0, 1, 0);
+	glTranslatev(position);
 	for (g = llist_start(&list_geos); llist_end(&list_geos); g = llist_next(&list_geos))
 	{
 		glPushMatrix();
-		glTranslatev(position);
 		geometry_draw((GEOMETRY *)g);
 		glPopMatrix();
 	}
@@ -38,7 +40,8 @@ void draw(int argc, char **argv)
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("fps");
 	init();
-	//glutSetCursor(GLUT_CURSOR_NONE);
+	mouse_init();
+	glutSetCursor(GLUT_CURSOR_NONE);
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyPressed);
