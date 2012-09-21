@@ -1,6 +1,9 @@
 #include "geometry.h"
 
 
+float cam_height = - 4.0;
+
+
 void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 {
 	GLuint idx[3];
@@ -8,6 +11,8 @@ void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 	char line_buffer[BUFSIZ];
 	char type;
 	FILE *file;
+
+	// find number of vertices and faces
 	file = fopen(filename, "r");
 	if (file != NULL)
 	{
@@ -28,6 +33,8 @@ void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 	}
 	else
 		perror("file could not be opened\n");
+
+	// save vertices and faces in separate arrays
 	file = fopen(filename, "r");
 	if (file != NULL)
 	{
@@ -54,6 +61,8 @@ void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 	}
 	else
 		perror("file could not be opened\n");
+
+	// calculate vertex normals by averaging over adjacent faces
 	self->normals = malloc(3 * self->vertex_num * sizeof(GLfloat));
 	GLfloat *nml;
 	GLuint *fc;
@@ -75,6 +84,23 @@ void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 			}
 		}
 	}
+}
+
+
+void geometry_move_minimum(GEOMETRY *self, int index)
+{
+	// find minimum value in y direction for ground level
+	float min = self->vertices[index];
+	int i, v;
+	for (i = 1; i < self->vertex_num; i++)
+	{
+		v = 3 * i + index;
+		if (self->vertices[v] < min)
+			min = self->vertices[v];
+	}
+	// move geometry to ground level
+	for (i = 0; i < self->vertex_num; i++)
+		self->vertices[3 * i + index] -= min;
 }
 
 

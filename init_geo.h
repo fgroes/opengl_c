@@ -1,5 +1,6 @@
 #ifndef INIT_GEO_H
 #define INIT_GEO_H
+#include <stdlib.h>
 #include "llist.h"
 #include "geometry.h"
 

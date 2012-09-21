@@ -10,9 +10,6 @@
 #include "init_geo.h"
 
 
-int window_size_x = 800, window_size_y = 600;
-
-
 void display()
 {
 	GEOMETRY *g;
@@ -46,7 +43,7 @@ void draw(int argc, char **argv)
 	glutKeyboardFunc(keyPressed);
 	glutKeyboardUpFunc(keyReleased);
 	glutPassiveMotionFunc(mouseMotion);
-	glutTimerFunc(20, timer, 0);
+	glutTimerFunc(refresh, timer, 0);
 	glutMainLoop();
 }
 

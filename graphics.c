@@ -1,6 +1,9 @@
 #include "graphics.h"
 
 
+int window_size_x = 800, window_size_y = 600;
+
+
 void init()
 {
 	printf("initialising opengl ... ");

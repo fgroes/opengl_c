@@ -2,9 +2,10 @@
 
 
 GLfloat position[3] = {0, 0, 0};
-GLfloat speed = 2.0;
+GLfloat speed = 1.0;
 bool keyStates[256];
 float deg2rad = M_PI / 180.0;
+float refresh = 20.0;	// refresh rate for scene action
 
 
 void keyPressed(unsigned char key, int x, int y)
@@ -44,8 +45,13 @@ void timer(int n)
 	}
 	if (keyStates['b'])
 	{
-		cube_draw(position);
+		GEOMETRY *g;
+		g = malloc(sizeof(GEOMETRY));
+		cube_draw(g, 2.0);
+		geometry_translate(g, - position[0], - position[1] + cam_height, - position[2]);
+		geometry_set_color(g, 1, 0, 0);
+		llist_add_element(&list_geos, g);
 	}
 	glutPostRedisplay();
-	glutTimerFunc(20, timer, 0);
+	glutTimerFunc(refresh, timer, 0);
 }	

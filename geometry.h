@@ -8,6 +8,9 @@
 #include "graphics.h"
 
 
+extern float cam_height;
+
+
 struct geometry
 {
 	GLfloat *vertices, *normals;
@@ -20,6 +23,8 @@ typedef struct geometry GEOMETRY;
 
 
 void geometry_load_geo_obj(GEOMETRY *, char *);
+
+void geometry_move_minimum(GEOMETRY *, int);
 
 int geometry_get_num_face_coords(GEOMETRY *);
 
