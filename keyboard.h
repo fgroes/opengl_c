@@ -4,6 +4,7 @@
 #include <math.h>
 #include <GL/glut.h>
 #include "mouse.h"
+#include "cube.h"
 
 
 extern GLfloat position[];

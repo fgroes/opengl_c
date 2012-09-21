@@ -42,6 +42,10 @@ void timer(int n)
 		position[0] += speed * cos(angle);
 		position[2] += speed * sin(angle);
 	}
+	if (keyStates['b'])
+	{
+		cube_draw(position);
+	}
 	glutPostRedisplay();
 	glutTimerFunc(20, timer, 0);
 }	

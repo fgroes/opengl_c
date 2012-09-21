@@ -12,7 +12,7 @@ void init()
 	//glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	GLfloat light_position[] = {0, 100, 100};	
+	GLfloat light_position[] = {0, 10, 10};	
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
