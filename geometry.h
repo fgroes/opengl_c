@@ -13,7 +13,7 @@ extern float cam_height;
 
 struct geometry
 {
-	GLfloat *vertices, *normals;
+	GLfloat *vertices, *normals, *texcoords;
 	GLuint *faces;
 	int vertex_num, face_num;
 	float color[3], translation[3], rotation[4];
@@ -21,6 +21,8 @@ struct geometry
 
 typedef struct geometry GEOMETRY;
 
+
+void geometry_init(GEOMETRY *);
 
 void geometry_load_geo_obj(GEOMETRY *, char *);
 

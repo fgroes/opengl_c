@@ -15,6 +15,9 @@ void init_geo()
 	geometry_rotate(g, 270, 1, 0, 0);
 	geometry_set_color(g, 1, 0.5, 0);
 	llist_add_element(&list_geos, g);
+	TEXTURE t;
+	texture_load(&t, "HeNe.bmp");
+	texture_bind(&t);
 	/*
 	g = malloc(sizeof(GEOMETRY));
 	geometry_load_geo_obj(g, "./Models/eiffel.obj");

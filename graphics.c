@@ -19,6 +19,7 @@ void init()
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
+	//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	printf("done\n");
 }
 

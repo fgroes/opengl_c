@@ -7,6 +7,7 @@ void cube_draw(GEOMETRY *self, float size)
 	int order[6] = {0, 1, 2, 1, 3, 2};
 	self->vertices = malloc(Nv * 3 * sizeof(GLfloat));
 	self->normals = malloc(Nv * 3 * sizeof(GLfloat));
+	self->texcoords = malloc(Nv * 2 * sizeof(GLfloat));
 	self->faces = malloc(Nf * 3 * sizeof(GLuint));
 	int i, j, k, l, n;
 	for (i = 0; i < 3 * Nv; i++)
@@ -27,6 +28,8 @@ void cube_draw(GEOMETRY *self, float size)
 					self->vertices[3 * n + (l + 4) % 3] = j * size;
 					self->vertices[3 * n + (l + 5) % 3] = k * size;
 					self->normals[3 * n + (l + 5) % 3] = powf(-1.0, k + 1) * 1.0;
+					self->texcoords[2 * n + (l + 2) % 2] = i;
+					self->texcoords[2 * n + (l + 3) % 2] = j;
 					n++;
 				}
 			}

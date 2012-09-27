@@ -4,6 +4,17 @@
 float cam_height = - 4.0;
 
 
+void geometry_init(GEOMETRY *self)
+{
+	self->vertices = NULL;
+	self->normals = NULL;
+	self->texcoords = NULL;
+	self->faces = NULL;
+	self->vertex_num = 0;
+	self->face_num = 0;
+}
+
+
 void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 {
 	GLuint idx[3];
@@ -174,5 +185,7 @@ void geometry_draw(GEOMETRY *self)
 	glColorv(self->color);
 	glVertexPointer(3, GL_FLOAT, 0, self->vertices);
 	glNormalPointer(GL_FLOAT, 0, self->normals);
+	if (self->texcoords != NULL)
+		glTexCoordPointer(2, GL_FLOAT, 0, self->texcoords);
 	glDrawElements(GL_TRIANGLES, geometry_get_num_face_coords(self), GL_UNSIGNED_INT, self->faces);
 }

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "llist.h"
 #include "geometry.h"
+#include "texture.h"
 
 
 extern LLIST list_geos;
