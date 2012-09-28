@@ -24,6 +24,8 @@ typedef struct geometry GEOMETRY;
 
 void geometry_init(GEOMETRY *);
 
+void geometry_from_parametrization(GEOMETRY *, int, int);
+
 void geometry_load_geo_obj(GEOMETRY *, char *);
 
 void geometry_move_minimum(GEOMETRY *, int);

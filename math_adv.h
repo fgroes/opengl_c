@@ -11,5 +11,7 @@ void normalize(float *);
 
 void cross(float *, float *, float *);
 
+void vertex_copy(float *, float *, int);
+
 
 #endif

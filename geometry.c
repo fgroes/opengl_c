@@ -15,6 +15,23 @@ void geometry_init(GEOMETRY *self)
 }
 
 
+void geometry_from_parametrization(GEOMETRY *self, float *par, int M, int N)
+{
+	int i, j, n;
+	// 2 triangles per quad / 3 vertices per triangle / 3 floats per vertex
+	self->vertices = malloc(3 * 2 * 3 * (M - 1) * (N - 1));
+	for (i = 0; i < M; i++)
+	{
+		for (j = 0; j < N; j++)
+		{
+			n = 3 * 2 * 3 * M * i + 3 * 2 * 3 * j;
+			vertex_copy(self->vertices + n, par + 3 * M * i + 3 * j);
+
+		}
+	}
+}
+
+
 void geometry_load_geo_obj(GEOMETRY *self, char *filename)
 {
 	GLuint idx[3];
